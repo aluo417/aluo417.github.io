@@ -4,7 +4,7 @@
 # ---------------------------------------------------------------
 
 # Site
-title: Knowledge Assets Management
+title: Knowledge Asset Management
 subtitle:
 description: Personal website to share study notes & projects in Financial Engineering
 author: Ao Luo
@@ -76,10 +76,10 @@ plugins:
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `assets/` directory.
-favicon: /assets/favicon.ico
+favicon: /assets/favicon.png
 
 # Set default keywords (Use a comma to separate)
-keywords: "Jekyll, NexT"
+keywords: "Financial, Engineering, Quantitative, Machine, Learning"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
