@@ -1,12 +1,12 @@
 ---
-title: Stocks Fundamental Data
-description: This project is focused on the collection of annual fundamental data for all stocks.
+title: Application of Monte Carlo Simulation
+description: This project is focused on the the application of Monte Carlo Simulations to solve statistical problems in financial engineering.
 categories:
  - project
-tags: R
+tags: Python
 ---
 
-> The data sets come from [WRDS](https://wrds-web.wharton.upenn.edu/wrds/). The annual data for earnings, cash flows, and leverage ratios of corresponding fiscal years are collected. Measurement error due to sample selection, and processing of missing data for stocks with short history may affect the conclusion.
+> The most common use of Monte Carlo Simulation in finance is when one needs to calculate the expected value of a functional $$\mathbb{E} f(X)$$
 
 <!-- more -->
 
