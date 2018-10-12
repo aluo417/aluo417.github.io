@@ -61,3 +61,5 @@ When a large amount of text is formatted at one time with a command, it is easie
 | \leftarrow  | \\(\leftarrow\\)  |  \Leftarrow |  \\(\Leftarrow\\) |
 | \;  |  add extra space |  x^2 | \\(x^2\\)  |
 |  x_i  | \\(x_i\\) |  \frac{m}{n} | \\(\frac{m}{n}\\)  |
+
+

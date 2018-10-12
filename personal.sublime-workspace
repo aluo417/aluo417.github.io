@@ -1,0 +1,1101 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"result",
+				"result"
+			],
+			[
+				"res",
+				"res_list"
+			],
+			[
+				"valid",
+				"valid_list"
+			],
+			[
+				"re",
+				"result_list"
+			],
+			[
+				"one",
+				"oneYearTradeNum"
+			],
+			[
+				"oney",
+				"oneYearTradeAmt"
+			],
+			[
+				"CT",
+				"CTR_Last1YearTradeNum"
+			],
+			[
+				"oneY",
+				"oneYearTradeNum"
+			],
+			[
+				"CTR",
+				"CTR_Last1YearTradeAmt"
+			],
+			[
+				"u",
+				"utf-8"
+			],
+			[
+				"Pe",
+				"Perimeter"
+			],
+			[
+				"x",
+				"X_test"
+			],
+			[
+				"y",
+				"y_train"
+			],
+			[
+				"X",
+				"X_train"
+			],
+			[
+				"end",
+				"end_date"
+			],
+			[
+				"start",
+				"start_date"
+			],
+			[
+				"data",
+				"pandas_datareader"
+			],
+			[
+				"if",
+				"ifmain	if __name__ == '__main__'"
+			],
+			[
+				"over",
+				"overflow-x"
+			],
+			[
+				"getIn",
+				"getWinners"
+			],
+			[
+				"a",
+				"aVotes"
+			],
+			[
+				"L",
+				"Later"
+			],
+			[
+				"immu",
+				"immutable"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"mari",
+				"margin"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"source",
+				"sourceId"
+			],
+			[
+				"conn",
+				"connectDropTarget"
+			],
+			[
+				"targe",
+				"targetProps"
+			],
+			[
+				"is",
+				"isDragging"
+			],
+			[
+				"sour",
+				"sourceNoteIndex"
+			],
+			[
+				"target",
+				"targetLane"
+			],
+			[
+				"souce",
+				"sourceId"
+			],
+			[
+				"souc",
+				"sourceId"
+			],
+			[
+				"tarte",
+				"targetProps"
+			],
+			[
+				"connectDr",
+				"connectDropTarget"
+			],
+			[
+				"connect",
+				"connectDropTarget"
+			],
+			[
+				"note",
+				"noteTarget"
+			],
+			[
+				"connec",
+				"connectDragSource"
+			],
+			[
+				"Laen",
+				"LaneActions"
+			],
+			[
+				"id",
+				"id"
+			],
+			[
+				"acti",
+				"activateLaneEdit"
+			],
+			[
+				"render",
+				"renderDelete"
+			],
+			[
+				"Lane",
+				"LaneActions"
+			],
+			[
+				"Note",
+				"NoteActions"
+			],
+			[
+				"delete",
+				"deleteNote"
+			],
+			[
+				"store",
+				"storeChanged"
+			],
+			[
+				"lists",
+				"list-style"
+			],
+			[
+				"backc",
+				"background-color"
+			],
+			[
+				"pro",
+				"props	React: this.props."
+			],
+			[
+				"React",
+				"ReactDOM"
+			],
+			[
+				"rc",
+				"rrc	React: redux component skeleton"
+			],
+			[
+				"webpa",
+				"webpack-dev-server"
+			],
+			[
+				"show",
+				"showHs"
+			],
+			[
+				"ss",
+				"setState"
+			],
+			[
+				"ele",
+				"handleElemClose"
+			],
+			[
+				"el",
+				"showElem"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"d",
+				"document"
+			],
+			[
+				"pop",
+				"popoutContentClicked"
+			],
+			[
+				"popoutC",
+				"popoutContentClicked"
+			],
+			[
+				"prop",
+				"PropTypes"
+			],
+			[
+				"qr",
+				"qrkefu"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"mo",
+				"mobile-padding"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"max",
+				"max-height"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"backgounr",
+				"background-color"
+			],
+			[
+				"margn",
+				"margin-left"
+			],
+			[
+				"Prop",
+				"PropTypes"
+			],
+			[
+				"Pro",
+				"PropTypes"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"vid",
+				"videoHolder"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"padding",
+				"padding"
+			],
+			[
+				"ep",
+				"epgyLogo"
+			],
+			[
+				"j",
+				"JHU_logo"
+			],
+			[
+				"Button",
+				"ButtonGroup"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"tra",
+				"translateX()"
+			],
+			[
+				"tran",
+				"transform"
+			],
+			[
+				"st",
+				"styles"
+			],
+			[
+				"EvaluationPart",
+				"evaluationPartners"
+			],
+			[
+				"pbP",
+				"pbPath3"
+			],
+			[
+				"pb",
+				"pbPath1"
+			],
+			[
+				"sp",
+				"span"
+			],
+			[
+				"pa",
+				"pathblazerLogo"
+			],
+			[
+				"Panel",
+				"PanelGroup"
+			],
+			[
+				"bor",
+				"border"
+			],
+			[
+				"mon",
+				"montanaLogo"
+			],
+			[
+				"border-co",
+				"border-color"
+			],
+			[
+				"carousel",
+				"carouselOverlay"
+			],
+			[
+				"sha",
+				"text-shadow"
+			],
+			[
+				"home",
+				"homeCarousel3"
+			],
+			[
+				"marin",
+				"margin-bottom"
+			],
+			[
+				"margin-",
+				"margin-left"
+			],
+			[
+				"aw",
+				"awardBessie"
+			],
+			[
+				"N",
+				"NWEAMAP"
+			],
+			[
+				"backg",
+				"background-image"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"chi",
+				"childrenImage"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"background",
+				"background-color"
+			],
+			[
+				"List",
+				"ListGroupItem"
+			],
+			[
+				"logo",
+				"logoImage"
+			],
+			[
+				"class",
+				"className"
+			],
+			[
+				"clas",
+				"className"
+			],
+			[
+				"po",
+				"popularImage"
+			],
+			[
+				"Nav",
+				"NavItem"
+			],
+			[
+				"event",
+				"eventKey"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "_config.yml",
+			"settings":
+			{
+				"buffer_size": 17059,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_posts/2018-01-24-application-of-Monte-Carlo.md",
+			"settings":
+			{
+				"buffer_size": 3687,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "personal.sublime-project",
+			"settings":
+			{
+				"buffer_size": 267,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_posts/2017-09-28-inline-latex-cheat-sheet.md",
+			"settings":
+			{
+				"buffer_size": 2626,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_includes/_partials/head.html",
+			"settings":
+			{
+				"buffer_size": 4930,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 127.0,
+		"last_filter": "jekyll",
+		"selected_items":
+		[
+			[
+				"jekyll",
+				"Jekyll Utility: Migrate user settings"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"pandoc ",
+				"Markdown Preview: Open Markdown Cheat sheet"
+			],
+			[
+				"package in",
+				"Package Control: Install Package"
+			],
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Preferences: Settings - Default"
+			],
+			[
+				"package",
+				"Preferences: Browse Packages"
+			],
+			[
+				"snipp",
+				"Snippet: Lorem ipsum"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/website/jekyll-theme-next"
+	],
+	"file_history":
+	[
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/website/jekyll-theme-next/personal.sublime-workspace",
+		"/Users/AL/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/AL/Library/Application Support/Sublime Text 3/Packages/Jekyll/Jekyll.sublime-settings",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/website/jekyll-theme-next/.gitignore",
+		"/Users/AL/Library/Application Support/Sublime Text 3/Installed Packages/Jekyll.sublime-package",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/website/jekyll-theme-next/_posts/2018-01-20-all-stock-dataset.md",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/website/jekyll-theme-next/_includes/_custom/header.html",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/website/jekyll-theme-next/_posts/2014-02-16-Mathjax-with-jekyll.md",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/website/jekyll-theme-next/_layouts/page.html",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/website/jekyll-theme-next/about/index.md",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/jekyll_trial/blog-site/_config.yml",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/jekyll_trial/blog-site/Gemfile.lock",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/jekyll_trial/blog-site/_site/about/index.html",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/jekyll_trial/index.html",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/zual/requirements.txt",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/personal/me/index.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 3/flask_demo/temp/utility.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 3/flask_demo/temp/abnormal/20180503.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 3/flask_demo/temp/abnormal/2018-05-02.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 3/flask_demo/temp/abnormal/2018-05-01.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 3/flask_demo/temp/tick_list.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 2/Dashboard_MSBA2018/Roy/onetick/cloud/query.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 2/Dashboard_MSBA2018/Roy/onetick/cloud/equities.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 2/Dashboard_MSBA2018/Roy/onetick/cloud/data.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 3/flask_demo/temp/portfolio_stats/20180502.json",
+		"/Users/AL/Downloads/bar-negative2.html",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 6/惠家贷指标融合_week6/FactorsMerge.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 9/factor_fusion_method.py",
+		"/Users/AL/Downloads/grouped_boxplot.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 9/test\\ of\\ three\\ source/data/YFH_BI.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 9/test\\ of\\ three\\ source/data/decoded_single.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 9/test\\ of\\ three\\ source/data/yf_10.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 9/test\\ of\\ three\\ source/data/YF/1.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 2/flask-echarts/readme.md",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 2/flask-echarts/templates/server.py",
+		"/Users/AL/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Data/1688851584839132/Cache/File/2018-08/珠海市百荟优品商贸有限公司_null.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 2/flask-echarts/templates/pyecharts.html",
+		"/Users/AL/Documents/data handling techniques/sankey diagram/enerygy sample/energy.js",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 1/EquitiesAPI/jupyter.bat",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 1/EquitiesAPI/config/cirrus.cfg",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 5/to_强哥/本次返回的json文件/脚本/newliushuihaochaxun.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 5/to_强哥/本次返回的json文件/请求报文/珠海市百荟优品商贸有限公司_null(删减过的).json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 5/aa.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Python Course/week 6/Week 6 Web Scraping.ipynb",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 5/测试调试/HB_ManagementFees.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 5/测试调试/珠海市百荟优品商贸有限公司.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 5/惠家贷指标测试_luoao/dr/YFH_GreeningRatio.py",
+		"/Users/AL/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Data/1688851584839132/Cache/File/2018-07/‘∆∑ø ˝æ›/queryBaseInfo.json",
+		"/Users/AL/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Data/1688851584839132/Cache/File/2018-07/‘∆∑ø ˝æ›/similarCase.json",
+		"/Users/AL/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Data/1688851584839132/Cache/File/2018-07/‘∆∑ø ˝æ›/getSummaryReport.json",
+		"/Users/AL/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Data/1688851584839132/Cache/File/2018-07/‘∆∑ø ˝æ›/getRentIndex.json",
+		"/Users/AL/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Data/1688851584839132/Cache/File/2018-07/‘∆∑ø ˝æ›/basePriceDirection.json",
+		"/Users/AL/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Data/1688851584839132/Cache/File/2018-07/‘∆∑ø ˝æ›/getBargainingSpace.json",
+		"/Volumes/Untitled/dr/YFH_CommAroundPriceRatio_DealListingCase.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/EG 样本请求SQL/ktgg1.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/single_qyxx.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/qyxx.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/LA Capital/week 1/EquitiesAPI/onetick/__init__.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/数据样例.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/sample.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 1/纳税信息表/Week 6 Web Scraping.ipynb",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_Last6MonthSingleTradeAmt.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_Last1YearSingleTradeAmt.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 1/纳税信息表/REC_Last1YearAvgSalesAmount.py",
+		"/Users/AL/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_Last3MonthSingleTradeAmt.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_Last3MonthTradeNum.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_Last3MonthTradeAmt.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_Last6MonthTradeAmt.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_Last6MonthTradeNum.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_Last1YearTradeNum.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_Last1YearTradeAmt.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_MerchantCorpTime.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_MerchantEndCorpTime.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_MerchantStatus.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 4/指标/CTR_MerchantTradeManner.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 1/征信training/标准化系统个人征信样本 - 单条样例.json",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 1/纳税信息表/zhongda1.html",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Intern/BBD/week 1/纳税信息表/重大.lxml.json",
+		"/Users/AL/.ipython/profile_default/ipython_config.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/405/longstaff_schwartz/longstaff_schwartz.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/405/longstaff_schwartz/aa.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Financial Engineering Projects/README.md",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/404/hw6/ao-luo-hw6.html",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/404/hw5/ao-luo-hw5.html",
+		"/Users/AL/Downloads/data/train.json",
+		"/Users/AL/Downloads/try.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/405/week 2/hw2/Luo_Ao_Project2.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/405/week 2/p2.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/406/Assignment/assnmt1.m",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/404/hw2/backup.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/405/week 1/Project 1/Luo_Ao_Project1.py",
+		"/Users/AL/Documents/1 In-Active/deep learning/Building+your+Deep+Neural+Network+-+Step+by+Step+v5.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/403/Competition/closed_form.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/403/Competition/bs_call.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/403/Competition/statistics.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/403/Competition/call_put.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/400/HW/HW5/sp500.R",
+		"/Users/AL/Documents/tree.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Akuna/gramham_scan.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Akuna/gramham.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Akuna/test_balanced_parentheses.py",
+		"/Users/AL/Documents/quant/Python/algorithm trading/fetch_data_nomal.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Kemnay Summer Intern/py276qis.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Kemnay Summer Intern/quant_investment_strat.py",
+		"/Users/AL/Downloads/Python+Basics+With+Numpy+v3.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Kemnay Summer Intern/quant investment strat.py",
+		"/Users/AL/Documents/0 UCLA Anderson MFE/Kemnay Summer Intern/quant investment strat",
+		"/Users/AL/Documents/quant/Python/algorithm trading/time_value_money.py",
+		"/Users/AL/Documents/pandoc-test/test2.md",
+		"/Users/AL/Documents/pandoc-test/test1.md",
+		"/Users/AL/.zshrc",
+		"/Users/AL/Documents/machine learning for finance/looptime.py",
+		"/Users/AL/Documents/machine learning for finance/fillna.py",
+		"/Users/AL/Documents/baicizhan/interview/react-redux-universal-hot-example/src/containers/Home/Home.scss",
+		"/Users/AL/QSTK/Examples/Basic/tutorial1.py",
+		"/Users/AL/Documents/voserver/webpack.config.js",
+		"/Users/AL/Documents/voserver/index.js",
+		"/Users/AL/Documents/voserver/package.json",
+		"/Users/AL/Documents/voserver/src/core.js",
+		"/private/etc/hosts",
+		"/private/etc/hosts.equiv",
+		"/Users/AL/Documents/seek12-website-frontend/src/containers/Home/Home.js",
+		"/Users/AL/Documents/seek12-website-frontend/src/config.js",
+		"/Users/AL/Documents/seek12-website-frontend/package.json",
+		"/Users/AL/Documents/seek12/src/components/LoginForm/LoginForm.js",
+		"/Users/AL/Documents/seek12/src/containers/Course/Course.scss",
+		"/Users/AL/Documents/seek12/src/containers/Evaluation/Evaluation.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"github",
+			"temp",
+			"communityName",
+			"communi",
+			"dishonesty",
+			"sixMonth",
+			"oneYear",
+			"Amt",
+			"cardbiz",
+			"5year",
+			"overdue",
+			"5Year",
+			"lastest5",
+			"latest24",
+			"latest5",
+			"latest24",
+			"load n",
+			"update",
+			"\"6\"",
+			"source",
+			"Note",
+			"trial",
+			"h1",
+			"\"6\"",
+			"h2",
+			"this",
+			"\"",
+			"newwindow",
+			"redirect",
+			"div",
+			"Survey",
+			"\"6\"",
+			"react/addons",
+			"graceful",
+			"grace",
+			"00",
+			"300px",
+			"{3}",
+			"h2",
+			"<h2><i className",
+			"evaluationService",
+			"url",
+			"name",
+			"h1",
+			"</p>",
+			"<p>",
+			"h4",
+			"div",
+			"h3",
+			"div",
+			"pb",
+			"gears",
+			"20px",
+			"fa-2x",
+			"III",
+			"II",
+			"span",
+			"hbLearningPathImg",
+			"hbLearningPath}",
+			"pbLearningPathImg",
+			"pbLearningPath}",
+			"pbLearningPath",
+			"{3}",
+			"{6}",
+			"update",
+			"<Col md={4}>",
+			"\"3\"",
+			"Header",
+			"rgba(255,255,255,0.9)",
+			"h2",
+			"for",
+			"<NavItem",
+			"<LinkContainer",
+			"h2",
+			"md={3}",
+			"sm={12}",
+			"xs={3}",
+			"xs={4}",
+			"0,0,0,",
+			"0,0,0",
+			"12",
+			"3x",
+			"<Col",
+			"div",
+			"h2>",
+			"Grid",
+			"Organisation",
+			"awardInner",
+			"Bessie",
+			"ListGroupItem ",
+			"ListGroupItem",
+			"<Col xs={12} sm={4}>",
+			"\"evaluationIcon\"",
+			"p",
+			"={12}",
+			"\"img\"",
+			"\"expand\"",
+			"\"overlay\"",
+			"Image",
+			"className=\"overlayEffect\"",
+			"className={styles.campCard}",
+			"span",
+			"animateIn animateOut",
+			"animateIn",
+			"animateIn={true}",
+			"<Carousel.Item>",
+			"animateIn={true} animateOut={true}",
+			"<Carousel.Item>",
+			"\"6\"",
+			"\"3\"",
+			"<ListGroupItem>",
+			"ListGroupItem>",
+			"xs={4}",
+			"\"4\"",
+			"Gird",
+			"\"12\"",
+			"xs={4}",
+			"\"4\"",
+			"<Col",
+			"/assets/carousel.png",
+			"evaluation",
+			"Evaluation",
+			"Course",
+			"div",
+			"awesomecomponent"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "_config.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17059,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4167,
+								4167
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "_posts/2018-01-24-application-of-Monte-Carlo.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3687,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								440,
+								440
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "personal.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 267,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								108,
+								108
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "_posts/2017-09-28-inline-latex-cheat-sheet.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2626,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1696,
+								1696
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 312.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "_includes/_partials/head.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4930,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3336,
+								3336
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1278.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "personal.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 204.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
