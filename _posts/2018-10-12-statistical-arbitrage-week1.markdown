@@ -1,5 +1,5 @@
 ---
-title: Statistical-Arbitrage
+title: Statistical-Arbitrage-Week1
 description: course notes of statistical arbitrage class
 categories:
  - notes
@@ -9,7 +9,6 @@ tags: financial, econometrics, arbitrage, statistics
 > Statistical Arbitrage applies equity long-short market neutral without human overlay and rebalanced around in 1 week to 1 month.
 
 ## Typical Stat Arb
-
 - Realized (not backtested) Sharpe Ratio > 2
 - Make profit over any 6-months period
 - Leverage: for \\$1M capital, go \\$2M long and \\$2M short
@@ -18,7 +17,6 @@ tags: financial, econometrics, arbitrage, statistics
 - Long-term sustainable through research
 
 ## Requirement
-
 - Managing complexity
 - 10,000+ lines of code, 100’s of databases
 - Must retain intellectual control at all times
@@ -26,7 +24,6 @@ tags: financial, econometrics, arbitrage, statistics
 - Box is black to others, transparent to you
 
 ## Toolkit
-
 - Linear Algebra
 - Statistics
 - Economics
@@ -35,16 +32,15 @@ tags: financial, econometrics, arbitrage, statistics
 - Programming
 
 ## Main Component
-
 - Alphas
 - Risk Model (covariance matrix) 
 - T-cost model
 - Optimizer
 
-![overall structure](/assets/images/statistical-arbitrage/overall-structure.png)
+* Overall Structure of Main Components
+![Overall Structure](/assets/images/statistical-arbitrage/overall-structure.png)
 
 ### Alphas
-
 \\(\alpha\\) is a matrix of dimension \\(T \times n\\)
 
 - \\(T\\) = number of days in the backtest
@@ -58,7 +54,6 @@ $$\begin{bmatrix}
 \end{bmatrix}$$
 
 #### Sample Steps to Process Alpha
-
 Let \\(m_{t,i}\\) be the relative change at day \\(t\\).
 
 1. Demean
@@ -105,6 +100,26 @@ Let \\(m_{t,i}\\) be the relative change at day \\(t\\).
 
 ### Optimizer
 
+#### Notations
+|  Parameter | Dimension  | Definition  |
+|:-:|:-:|:-:|
+| \\(x\\)  |  \\(n \times 1\\) | vector of desired portfolio weights  |
+|  \\(w\\) |  \\(n \times 1\\) |  vector of initial portfolio weights |
+|  \\(\Sigma\\) | \\(n \times 1\\)  |   covariance matrix of stock returns |
+| \\(\alpha\\)  | \\(n \times 1\\)  |  vector of aggregate alphas |
+| \\(\beta\\)  | \\(n \times 1\\)  |  vector of historical betas |
+| \\(\tau\\) | \\(n \times 1\\) | vector of transaction costs |
 
+#### Objectives & Constraints
+- Minimize risk: \\(x' \Sigma x\\)
+- Maximize exposure to alpha: \\(\alpha' x\\)
+- Neutralize exposure to beta: \\(\beta' x = 0\\)
+- Minimize transaction costs: \\(\tau' \lvert x-w \rvert\\)
 
+#### Objective Function
+$$max_{x} \underbrace{\alpha' x}_{\text{maximize alpha exposure}} - \overbrace{\lambda}^{\text{controls turnover}}\cdot \underbrace{\tau' \lvert x-w \rvert}_{\text{minimize transaction cost}} - \overbrace{\mu}^{\text{controls book size}}\cdot \underbrace{x' \Sigma x}_{\text{minimize portfolio variance}}
+$$
 
+$$
+\text{s.t}\; \beta' x = 0
+$$
