@@ -1,5 +1,5 @@
 ---
-title: statistical-arbitrage-week2
+title: Statistical-Arbitrage-Week2
 description: course notes of statistical arbitrage class
 categories:
  - notes
@@ -48,6 +48,44 @@ $$\hat{m_i} = (1-\beta)\overline{m} + \beta m_i$$
 	- \\(\beta = 0\\): full shrinkage, all means are equal (Global Minimum Variance Portfolio)
 	- Optimum: somewhere between 0 and 1
 
-##
+## Estimate \\(\beta\\)
+_Lady Luck_ is independent from _God (skill)_, therefore \\(m_i -\mu_i \text{ is independent of } \mu_i - \bar{\mu}\\)
 
-###
+$$\begin{align}
+\beta &= \frac{Cov\Big[(m_i - \mu_i) + (\mu_i-\bar{\mu}), \mu_i -\bar{\mu}\Big]}{Var\Big[(m_i - \mu_i) + (\mu_i - \bar{\mu})\Big]}\\
+\beta &= \frac{Var\Big[\mu_i - \bar{\mu}\Big]}{Var\Big[m_i - \mu_i\Big] + Var\Big[\mu_i -\bar{\mu}\Big]}\\
+\beta &= \frac{\delta^2}{\omega^2 + \delta^2}
+\end{align}$$
+
+### Estimate \\(\omega^2\\)
+Intuitively, dispersion in the time-series contains information about the amount of noise, thus
+
+$$\hat{\omega}^2 = \frac1n \sum_{i=1}^{n}{\hat{\sigma_i}^2}=\frac{1}{nT(T-1)} \sum_{i=1}^{n}{\sum_{t=1}^{T}{(x_{ti}-m_i)^2}}$$
+
+### Estimate \\(\delta^2\\)
+The cross-sectional disperson of expected returns is derived from 
+
+$$\begin{align}
+\mathbb{E}[(m_i-\bar{\mu})^2] &= Var\Big[(m_i-\mu_i) + (\mu_i -\bar{\mu})\Big]\\
+&= Var\Big[m_i -\mu_i\Big] + Var\Big[\mu_i -\bar{\mu}\Big]\\
+&= \omega^2 + \delta^2
+\end{align}$$
+
+where \\(\mathbb{E}[(m_i -\bar{\mu})^2] \text{ can be estimated by }\frac1n \sum_{i=1}^{n}{(m_i - \bar{m})^2}\\)
+
+therefore: \\(\hat{\delta}^2 = \frac1n \sum_{i=1}^{n}{(m_i -\bar{m})^2} - \hat{\omega}^2\\)
+
+### Estimate Shrinkage Slope \\(\hat{\beta}\\)
+
+$$\begin{align}
+\hat{\beta} &= \frac{\hat{\delta}^2}{\hat{\omega}^2 + \hat{\delta}^2}\\
+&= 1 - \frac{1}{T(T-1)}\cdot \frac{\sum_{i=1}^{n}{\sum_{t=1}^{T}{(x_{ti} - m_i)^2}}}{\sum_{i=1}^{n}{(m_i -\bar{m})^2}}
+\end{align}$$
+
+## Shrinkage Estimator of the Covariance Matrix
+
+$$\begin{align}
+\hat{\beta} &= \frac{\hat{\delta}^2}{\hat{\omega}^2 + \hat{\delta}^2}\\
+&= 1 - \frac{1}{T(T-1)}\cdot \frac{\sum_{i=1}^{T}{\lvert\lvert X_t X_t' - S\rvert\rvert^2}}{\lvert\lvert S - \bar{\sigma}\mathbb{1}\rvert\rvert^2}
+\end{align}$$
+
