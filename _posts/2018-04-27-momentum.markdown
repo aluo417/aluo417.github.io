@@ -1,0 +1,339 @@
+---
+title: Momentum
+description: We are going to replicate the momentum data following the instructions on Kent Daniel’s website.
+categories:
+ - project
+tags: 
+- R
+- momentum
+---
+
+> Using CRSP stock data, define the universe of monthly returns that can be used in calculating momentum portfolios, as well as their ranking return, following the procedure in Daniel and Moskowitz (2016). Your output should be from 1927-2017.
+
+<!-- more -->
+
+## Part 1
+Using CRSP stock data, define the universe of monthly returns that can be used in calculating momentum portfolios, as well as their ranking return, following the procedure in Daniel and Moskowitz (2016). Your output should be from 1927-2017.
+
+We are going to replicate the momentum data following the instructions on Kent Daniel's website.
+
+### Steps:
+
+1. Universe of stocks: Following Daniel-Moskowitz and Ken French's procedure, I restrict the sample to common shares (share codes 10 and 11) and to securities traded in the New York Stock Echange, American Stock Exchange, or the Nasdaq Stock Exchange (exchange codes 1, 2, and 3).
+2. Missing returns: The sample missing of both RET and DLRET are removed from dataset. And `NA` are labeled for their respective missing code.
+3. Duplicates removal: there are several duplicated data in CRSP, we shall remove them before any calculation.
+4. Delisting return calculation: We use cum-dividend returns for all the calculation. Delisting return is used when there is no listing return available. When both are avaiable, we use compounded rate of return.
+5. Market Capitalization calculation: Since the price in the dataset is at the end of the period, we shall use 1-period lag to calculate the market capitalization. The market capitalization is computed as the product of valid share price and outstanding shares from previous month.
+6. Sample period: Trying to include as much as possible, we can get dataset from Jan 1926 to Dec 2017.
+7. Ranking return: to calculate the ranking return, we select the most recent month as the formation period. Only when there are no less than eight monthly returns over the past 11 months before the formation period, we take the cumulative log return as the ranking return. Also, it requires a valid share price 13 months before the formation period and valid market capitalization 1 month before the formation period.
+
+### Input Dataset
+The replication starts from the input data:
+
+|  Variable Name |  Variable Type |
+|:---:|:---:|
+|  PERMNO |  integer  |
+|date|Date|
+|SHRCD|integer|
+|EXCHCD|integer|
+|RET|character|
+|DLRET|character|
+|PRC|numeric|
+|SHROUT|integer|
+
+### R script
+
+```r
+PS3_Q1 <- function(CRSP_Stocks){
+  # taking universe with NYSE, Amex and Nasdaq exchanged stocks
+  # only using returns of common shares
+  universe <- CRSP_Stocks[(EXCHCD %in% c(1, 2, 3)) & (SHRCD %in% c(10, 11)),]
+  
+  # filter out the duplicates in the sample
+  setkey(universe, NULL)
+  unique_universe <- unique(universe)
+  
+  # using valid shares and price
+  shrs_prc_universe <- unique_universe[, ADJPRC := abs(PRC)]
+  ## pre-filter out the invalid prc and shrs ?? (let's check this later by push this down)
+  shrs_prc_universe <- shrs_prc_universe[(ADJPRC > 0) & (SHROUT > 0), ]
+  # extract year and month from date
+  shrs_prc_universe[, c("Year", "Month") := list(year(date), month(date))]
+  # calculate market capitalization in millions
+  shrs_prc_universe[, mkc := ADJPRC * SHROUT / 1000]
+  # get 1-month lag market capitalization
+  shrs_prc_universe[, YM := as.yearmon(date)]
+  shrs_prc_universe[, shifted_YM_1 := shift(YM), by = .(PERMNO)]
+  shrs_prc_universe[, lag_Mkt_Cap_flag := ifelse(YM-1/12 == shifted_YM_1, 1, 0)]
+  shrs_prc_universe[, lag_Mkt_Cap := ifelse(lag_Mkt_Cap_flag == 1, shift(mkc), NA)]
+  
+  # get t-13 month price
+  shrs_prc_universe[, shifted_YM_13 := shift(YM, 13), by = .(PERMNO)]
+  shrs_prc_universe[, lag_adjprc_flag := ifelse(YM-13/12 == shifted_YM_13, 1, 0)]
+  shrs_prc_universe[, lag_adjprc := ifelse(lag_adjprc_flag == 1, shift(ADJPRC, 13), NA)]
+  
+  # calculate combined return using holding period return and delisting return
+  ret_universe <- shrs_prc_universe[, .(PERMNO, EXCHCD, RET, DLRET, Year, Month, YM, lag_Mkt_Cap, lag_adjprc)]
+  ret_universe[, c("RET", "DLRET") := list(as.numeric(RET), as.numeric(DLRET))]
+  ret_universe[, RET := ifelse(is.na(RET), -99, RET)]
+  ret_universe[, DLRET := ifelse(is.na(DLRET), -99, DLRET)]
+  ret_universe[, adjret := ifelse(RET != -99, ifelse(DLRET != -99, (1+RET)*(1+DLRET)-1, RET), 
+                                  ifelse(DLRET != -99, DLRET, NA))]
+  
+  formation_universe <- ret_universe[, .(PERMNO, EXCHCD, Year, Month, YM, lag_Mkt_Cap, adjret, lag_adjprc)]
+  #check how many valid months in previous 12 months
+  for(i in 1:12){
+    # get shifted month and return
+    formation_universe[, paste0("shifted_YM_", i) := shift(YM, i), by = .(PERMNO)]
+    formation_universe[, paste0("shifted_ret_", i) := shift(adjret, i), by = .(PERMNO)]
+    
+    # check if there is return in previous month
+    formation_universe[, paste0("shifted_flag_", i) := ifelse((YM-i/12 == eval(parse(text=paste0("shifted_YM_", i)))) 
+                                                              & !is.na(eval(parse(text=paste0("shifted_ret_", i)))), 1, 0)]
+    
+    # remove the columns
+    formation_universe[, paste0("shifted_YM_", i) := NULL]
+    formation_universe[, paste0("shifted_ret_", i) := NULL]
+  }
+  
+  # count the number of valid flag over month t-12 to month t-2
+  formation_universe[, formation_flag := Reduce(`+`, .SD), .SDcols = paste0("shifted_flag_", 2:12)]
+  
+  # check if valid to include into portfolio
+  ## At least 8 months of return data between t−12 and t−2
+  ## return on month t-12 and month t-2 exist
+  formation_universe[, if_include := ifelse((formation_flag >= 8) & 
+                                              (shifted_flag_2 == 1) & 
+                                              (shifted_flag_12 == 1) & 
+                                              (!is.na(lag_Mkt_Cap)) &
+                                              (!is.na(lag_adjprc)),
+                                            1, 0)]
+  
+  # calculate ranking return
+  ## use prod(x) and get log of the cumulative return
+  formation_universe[, plus_ret := adjret+1]
+  formation_universe[, Ranking_Ret := ifelse(if_include, log(Reduce(`*` , shift(plus_ret, 2:12))), NA)]
+  
+  CRSP_Stocks_Momentum <- na.omit(formation_universe[, .(Year, Month, PERMNO, EXCHCD, lag_Mkt_Cap, Ret=adjret, Ranking_Ret)])
+  return(CRSP_Stocks_Momentum)
+}
+```
+
+### Output Dataset
+And it gives the following output:
+
+|Variable.Name|Variable.Type|Variable.Description|
+|:---:|:---:|:---:|
+|Year|numeric|Year|
+|Month|numeric|Month|
+|PERMNO|integer|PERMNO ID issued by CRSP|
+|EXCHCD|integer|Exchange code|
+|lag_Mkt_Cap|numeric|Firm’s market value the previous month (in millions)|
+|Ret|numeric|Firm’s returns|
+|Ranking_Ret|numeric|Firm’s ranking returns|
+
+## Part 2
+Define the monthly momentum portfolio decile of each stock as defined by both Daniel and Moskowitz (2016) and Kenneth R. French. Your output should be from 1927-2017.
+
+We are going to determine the breakpoints for decile portfolio following Daniel and Moskowitz' approach and Kenneth R. French's approach.
+
+### Steps
+1. First we compute the breakpoints at each formation period so that each portfolio contains same number of stocks. To calculate the breakpoints following Daniel and Moskowitz' approach, we use all firms to create quantiles. For all the formation periods each quantile contains same number of stocks. 
+2. For Kennetch French's approach, we create breakpoints based on stocks exhcanged in NYSE only. However, the NYSE breakpoints may not include the all firm return ranges. To deal with this problem, we need to remap the head and tail quantiles of NYSE breakpoints to quantiles of all firm breakpoints.
+
+### Input Dataset
+
+|Variable.Name|Variable.Type|Variable.Description|
+|:---:|:---:|:---:|
+|Year|numeric|Year|
+|Month|numeric|Month|
+|PERMNO|integer|PERMNO ID issued by CRSP|
+|EXCHCD|integer|Exchange code|
+|lag_Mkt_Cap|numeric|Firm’s market value the previous month (in millions)|
+|Ret|numeric|Firm’s returns|
+|Ranking_Ret|numeric|Firm’s ranking returns|
+
+### R script
+
+```r
+PS3_Q2 <- function(CRSP_Stocks_Momentum){
+  # DM decile quantile calculator
+  DM_GetPortNums <- function(x) {
+    as.integer(cut(x,
+                   quantile(x, probs=0:10/10, na.rm = TRUE),
+                   include.lowest=T))
+  }
+  
+  CRSP_Stocks_Momentum_decile <- copy(CRSP_Stocks_Momentum)
+  # divide by DM decile for equal stocks for all exchange code
+  CRSP_Stocks_Momentum_decile[, DM_decile := DM_GetPortNums(Ranking_Ret), by = .(Year, Month)]
+  
+  # divide by KRF decile for equal stock for exchange code == 1 (NYSE)
+  KRF_GetPortNums <- function(x){
+    min1 <- min(x[EXCHCD==1, Ranking_Ret])
+    max1 <- max(x[EXCHCD==1, Ranking_Ret])
+    min <- min(x$Ranking_Ret)
+    max <- max(x$Ranking_Ret)
+    
+    if(min1 >= min){
+      if(max1 <= max){
+        fitted_quantile <- c(min-1, quantile(x[EXCHCD==1, Ranking_Ret], probs=0:10/10, na.rm = TRUE)[2:10], max+1)
+      }else{
+        fitted_quantile <- c(min-1, quantile(x[EXCHCD==1, Ranking_Ret], probs=0:10/10, na.rm = TRUE)[2:11])
+      }
+    }else{
+      if(max1 <= max){
+        fitted_quantile <- c(quantile(x[EXCHCD==1, Ranking_Ret], probs=0:10/10, na.rm = TRUE)[1:10], max+1)
+      }else{
+        fitted_quantile <- quantile(x[EXCHCD==1, Ranking_Ret], probs=0:10/10, na.rm = TRUE)
+      }
+    }
+    as.integer(cut(x$Ranking_Ret, 
+                   fitted_quantile, 
+                   include.lowest = T)) ## !! have to update the quantile for each YM
+    ## need modification so that the top and bottom quantile is inf
+    ## sol: first find min and max of EXCHCD==1 and global min and max
+  }
+  CRSP_Stocks_Momentum_decile[, KRF_decile := KRF_GetPortNums(.SD), by = .(Year, Month)]
+  CRSP_Stocks_Momentum_decile[, Ranking_Ret := NULL]
+  CRSP_Stocks_Momentum_decile[, EXCHCD := NULL]
+  return(CRSP_Stocks_Momentum_decile)
+}
+
+```
+
+### Output Dataset
+
+|Variable.Name|Variable.Type|Variable.Description|
+|:---:|:---:|:---:|
+|Year|numeric|Year|
+|Month|numeric|Month|
+|PERMNO|integer|PERMNO ID issued by CRSP|
+|lag_Mkt_Cap|numeric|Firm’s market value the previous month (in millions)|
+|Ret|numeric|Firm’s returns|
+|DM_decile|integer|Firm’s momentum decile as defined by Daniel & Moskowitz|
+|KRF_decile|integer|Firm’s momentum decile as defined by Kenneth R. French|
+
+## Part 3
+Calculate the monthly momentum portfolio decile returns as defined by both Daniel and
+Moskowitz (2016) and Kenneth R. French. Your output should be from 1927-2017.
+
+From previous question, we have times series of deciles. I compute the decile portfolio returns as follows:
+
+1. Sample period: Monthly from Jan 1927 to December 2017.
+2. Value-weighted portfolio: A decile portfolio weighted by total market capitalization and rebalanced monthly.
+3. Definition of portfolio weights: For value-weighted portfolio, the weight is computed from the weight of lagged market capitalization of respective stock. All the decile portolio return is calculated as value-weighted return.
+
+### Input Dataset
+
+|Variable.Name|Variable.Type|Variable.Description|
+|:---:|:---:|:---:|
+|Year|numeric|Year|
+|Month|numeric|Month|
+|PERMNO|integer|PERMNO ID issued by CRSP|
+|EXCHCD|integer|Exchange code|
+|lag_Mkt_Cap|numeric|Firm’s market value the previous month (in millions)|
+|Ret|numeric|Firm’s returns|
+|Ranking_Ret|numeric|Firm’s ranking returns|
+
+And
+
+|Variable.Name|Variable.Type|
+|Year|numeric|
+|Month|numeric|
+|Market_minus_Rf|numeric|
+|SMB|numeric|
+|HML|numeric|
+|Rf|numeric|
+
+### R script
+
+```r
+PS3_Q3 <- function(CRSP_Stocks_Momentum_decile, FF_mkt){
+  # calculate value-weighted return in each decile portfolio
+  DM_Momentum_returns <- CRSP_Stocks_Momentum_decile[, .(DM_Ret = sum(Ret*lag_Mkt_Cap / sum(lag_Mkt_Cap)), decile = DM_decile), by = .(DM_decile, Year, Month)]
+  KRF_Momentum_returns <- CRSP_Stocks_Momentum_decile[, .(KRF_Ret = sum(Ret*lag_Mkt_Cap / sum(lag_Mkt_Cap)), decile = KRF_decile), by = .(KRF_decile, Year, Month)]
+  # retrieve decile portfolio return columns
+  DM_Momentum <- DM_Momentum_returns[, .(Year, Month, decile, DM_Ret)]
+  KRF_Momentum <- KRF_Momentum_returns[, .(Year, Month, decile, KRF_Ret)]
+  # merge with risk free rate
+  setkey(DM_Momentum, Year, Month, decile)
+  setkey(KRF_Momentum, Year, Month, decile)
+  aa <- DM_Momentum[KRF_Momentum,]
+  rf <- FF_mkt[, .(Year, Month, Rf)]
+  setkey(rf, Year, Month)
+  setkey(aa, Year, Month)
+  # fast join
+  CRSP_Stocks_Momentum_returns <- rf[aa, ]
+  # reorder the columns
+  setcolorder(CRSP_Stocks_Momentum_returns, c("Year", "Month", "decile", "DM_Ret", "KRF_Ret", "Rf"))
+  return(CRSP_Stocks_Momentum_returns)
+}
+```
+
+### Output Dataset
+
+|Variable.Name|Variable.Type|Variable.Description|
+|Year|numeric|Year|
+|Month|numeric|Month|
+|decile|integer|Momentum decile|
+|DM_Ret|numeric|Decile (as defined by Daniel & Moskowitz (2016)) return|
+|KRF_Ret|numeric|Decile (as defined by Kenneth R. French) return|
+|Rf|numeric|Riskless rate|
+
+For illustration purpose, we plot log cumulative returns of the KRF momentum decile portfolio and DM momentum decile portfolios.
+
+* Momentum
+![momentum1](\assets\images\momentum\mom1.png)
+
+## Part 4
+Replicate Table 1 in Daniel and Moskowitz (2016), except for $\alpha$, $t(\alpha)$, $\beta$, and $sk(d)$ rows, and the Market column. Match the format and methodology to the extent possible.
+
+From previous question, we have a times series of decile portfolio returns for each month. I compute the required statistics as follows:
+
+1. Sample period: Monthly from Jan 1927 to December 2017.
+2. Excess return: Annualized excess return is calcualted as mean monthly excess return times 12. 
+3. Volatility: Volatility is calculated as standard deviation of excess return times square root of 12.
+4. Annualized Sharpe Ratio: For annualized Sharpe ratio, we divide the excess return by volatility.
+5. Skewness: for all portfolios except WML, the we calculate the full-period realized skewness of monthly log returns of the decile portfolio. For WML return, we calculate the skewness as $log(1 + r_{WML}+r_f)$.
+6. WML portfolio: the WML portfolio stands for the winner-minus-loser portfolio which is long the Decile 10 portfolio and short the Decile 1 portfolio.
+
+### Output Dataset
+
+The output is a $4 \times 11$ numeric matrix, reproducing part of Table 1 in Daniel & Moskowitz (2016). It matches the format and methodology to the extent possible.
+
+|Return statistics|1|2|3|4|5|6|7|8|9|10|WML|
+|Excess_Ret|-2.623|2.530|3.065|6.378|7.331|7.054|9.082|10.283|11.47|15.37|17.99|
+|Vol|36.67|30.38|26.05|23.14|21.57|20.38|19.56|19.15|20.52|23.94|29.98|
+|SR|-0.07152|0.08328|0.1176|0.2755|0.3398|0.3460|0.4642|0.5367|0.5590|0.64207|0.6002|
+|skm|0.07515|-0.1224|-0.1662|0.1291|-0.08925|-0.2373|-0.6442|-0.5490|-0.7583|-0.8084|-5.106|
+
+## Part 5
+Calculate the correlation of your portfolio returns with the Daniel and Moskowitz (2016) breakpoints (by decile), to the portfolio returns on Daniel’s website. Also calculate the correlation of your portfolio returns with the Kenneth R. French breakpoints (by decile), to the portfolio returns on French’s website. Round to 4 decimal places. Correlations should be calculated from 1927-2017.
+
+### Steps
+1. Data source: Kent Daniel provides data download on his  [website](http://www.kentdaniel.net/data.php). We can also download the NYSE breakpoints decile portfolio from Kenneth French's [website](http://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html).
+2. Sample range: since Daniel and Moskowitz only provide data from Jan 1927 to Dec 2016, we shall compute the correlation with the maximum available time horizon.
+3. Correlation: For each decile portfolio, we calculate the full-period correaltion between the monthly return of our replicated data and the data given by Kenneth French and Daniel and Moskowitz.
+
+### Output Dataset
+The output is a 2 by 11 numeric matrix, with the correlations between your estimated DM momentum portfolio returns and the DM momentum portfolio returns on Daniel’s website, and the correlations between your estimated KRF momentum portfolio returns and the KRF momentum portfolio returns on French’s website.
+
+|variable|1|2|3|4|5|6|7|8|9|10|WML|
+|DM correlation|0.9973|0.9972|0.9978|0.9977|0.9978|0.9981|0.9986|0.9989|0.9984|0.9981|0.9948|
+|KRF correlation|0.9977|0.9984|0.9977|0.9977|0.9976|0.9968|0.9978|0.9986|0.9983|0.9988|0.9955|
+
+The difference between the replicated momentum returns and the outcome from Daniel and Moskowitz (2016) and Kenneth French is not zero because of different ways in data processing and sample selection. Part of the deviation comes from the use of data source. Notice that the correlations at higher deciles have closer values to 1, which indicates the breakpoints choice may differ in the lower deciles.
+
+## Part 6
+Has the momentum anomaly worked in the past few years? Show some empirical evidence.
+
+To examine the performance of momentum strategy in the recent years, we shall analyse the cumulative gains from investments of most recent 10 years. The data is from the output of part 3.
+
+* Performance
+![performance](\assets\images\momentum\mom2.png)
+
+As shown in the plot, compared to market cumulative return, the decile 1 and decile 10 return have no superior performance. And we do observe several severe drawdown following the 2008-2009 financial crisis and 2015-2016 crash down. As for the performance of WML portfolio, it has relatively poor performance over this time period. This mostly comes from the short side (the past losers) as it rebounces much more than long side after crash. Overall, the momentum return has the worst performance in the above asset class over recent years.
+
+
+

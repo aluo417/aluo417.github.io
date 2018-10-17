@@ -1,5 +1,5 @@
 ---
-title: Statistical-Arbitrage-Week1
+title: Statistical Arbitrage Week1
 description: course notes of statistical arbitrage class
 categories:
  - notes
