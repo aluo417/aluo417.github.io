@@ -1,0 +1,85 @@
+---
+title: AFP Notes
+description: Notes of theoretical background knowledge for AFP.
+categories:
+ - notes
+tags: afp, vMF, CNN, parameters
+---
+
+> The main goal for this project is to build a quantitative finance research document curation engine that could perform well even when a small number of training samples are supplied.
+
+<!-- more -->
+
+## Von Mises-Fisher Distribution
+
+In directional statistics, the von Mises–Fisher distribution (named after Ronald Fisher and Richard von Mises), is a probability distribution on the \\((p-1)\\)-dimensional sphere in \\(\mathbb{R}^p\\). If \\(p=2\\) the distribution reduces to the von Mises distribution on the circle.
+
+The probability density function of the von Mises–Fisher distribution for the random p-dimensional unit vector \\{\mathbf {x}\\), is given by:
+
+$$f_p (\mathbf{x}; \boldsymbol{\mu}, \kappa) = C_p (\kappa) exp(\kappa \boldsymbol{\mu}^T \mathbf{x})$$
+
+where \\(\kappa \geq 0,\left\Vert {\boldsymbol{\mu}}\right\Vert =1\\), and the normalization constant \\(C_{p}(\kappa )\\), is equal to
+
+$$C_{p}(\kappa)={\frac{\kappa^{p/2-1}}{(2\pi )^{p/2}I_{p/2-1}(\kappa )}}$$
+
+where \\(I_{v}\\) denotes the modified Bessel function of the first kind at order \\(v\\). If \\(p=3\\), the normalization constant reduces to
+
+$$C_{3}(\kappa )={\frac{\kappa}{4\pi\sinh\kappa}}={\frac{\kappa}{2\pi(e^{\kappa }-e^{-\kappa})}}$$
+
+The parameters \\(\mu\\), and \\(\kappa\\), are called the mean direction and concentration parameter, respectively. The greater the value of \\(\kappa\\), the higher the concentration of the distribution around the mean direction \\(\mu\\). The distribution is unimodal for \\(\kappa>0\\), and is uniform on the sphere for \\)\kappa=0\\).
+
+The von Mises–Fisher distribution for \\(p=3\\), also called the Fisher distribution, was first used to model the interaction of electric dipoles in an electric field. Other applications are found in geology, bioinformatics, and text mining.
+
+### Estimation of Parameters
+
+A series of N independent measurements \\(x_{i}\\) are drawn from a von Mises–Fisher distribution. Define
+
+$$A_{p}(\kappa)=\frac {I_{p/2}(\kappa)} {I_{p/2-1}(\kappa)}$$
+
+Then the maximum likelihood estimates of \\(\mu\\), and \\(\kappa\\), are given by
+
+$$\begin{aligned}
+
+\mu &= \frac{\sum_i^N x_i}{\|\sum_i^N x_i\|},\\
+
+\kappa &= A_p^{-1}(\bar{R})
+
+\end{aligned}$$
+
+Thus \\(\kappa\\) is the solution to
+
+$$
+A_p(\kappa) = \frac{\|\sum_i^N x_i\|}{N} = \bar{R}
+$$
+
+A simple approximation to \\(\kappa\\) is
+
+$$
+\hat{\kappa} = \frac{\bar{R}(p-\bar{R}^2)}{1-\bar{R}^2}
+$$
+
+but a more accurate measure can be obtained by iterating the Newton method a few times
+
+$$\begin{aligned}
+
+\hat{\kappa}_1 &= \hat{\kappa} - \frac{A_p(\hat{\kappa})-\bar{R}}{1-A_p(\hat{\kappa})^2-\frac{p-1}{\hat{\kappa}}A_p(\hat{\kappa})} ,\\
+
+\hat{\kappa}_2 &= \hat{\kappa}_1 - \frac{A_p(\hat{\kappa}_1)-\bar{R}}{1-A_p(\hat{\kappa}_1)^2-\frac{p-1}{\hat{\kappa}_1}A_p(\hat{\kappa}_1)}
+
+\end{aligned}$$
+
+For \\(N \geq 25\\), the estimated spherical standard error of the sample mean direction can be computed as
+
+$$\hat{\sigma} = \left(\frac{d}{N\bar{R}^2}\right)^{1/2}$$
+
+where
+
+$$d = 1 - \frac{1}{N}\sum_i^N (\mu^Tx_i)^2$$
+
+It's then possible to approximate a \\(100(1-\alpha)\% \\) confidence cone about \\(\mu\\) with semi-vertical angle
+
+$$q = \arcsin(e_\alpha^{1/2}\hat{\sigma})$$
+
+where \\(e_\alpha = -\ln(\alpha)\\).
+
+## CNN
