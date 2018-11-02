@@ -3,7 +3,7 @@ title: AFP Notes
 description: Notes of theoretical background knowledge for AFP.
 categories:
  - notes
-tags: afp, vMF, CNN, parameters
+tags: afp, vMF, parameters
 ---
 
 > The main goal for this project is to build a quantitative finance research document curation engine that could perform well even when a small number of training samples are supplied.
@@ -11,6 +11,8 @@ tags: afp, vMF, CNN, parameters
 <!-- more -->
 
 ## Von Mises-Fisher Distribution
+
+### Theory
 
 In directional statistics, the von Mises–Fisher distribution (named after Ronald Fisher and Richard von Mises), is a probability distribution on the \\((p-1)\\)-dimensional sphere in \\(\mathbb{R}^p\\). If \\(p=2\\) the distribution reduces to the von Mises distribution on the circle.
 
@@ -30,7 +32,7 @@ The parameters \\(\mu\\), and \\(\kappa\\), are called the mean direction and co
 
 The von Mises–Fisher distribution for \\(p=3\\), also called the Fisher distribution, was first used to model the interaction of electric dipoles in an electric field. Other applications are found in geology, bioinformatics, and text mining.
 
-### Estimation of Parameters
+#### Estimation of Parameters
 
 A series of N independent measurements \\(x_{i}\\) are drawn from a von Mises–Fisher distribution. Define
 
@@ -82,4 +84,58 @@ $$q = \arcsin(e_\alpha^{1/2}\hat{\sigma})$$
 
 where \\(e_\alpha = -\ln(\alpha)\\).
 
-## CNN
+## Reasoning behind its Usage on Document Classification
+
+### Theoritical and Empirical Proof
+
+To clustering objects in text documents and gene expressions analysis, the representation as vectors are high-dimensional and directional. The commonly used mixture of multivariate Gaussians tends to perform poorly because of Euclidian distortion. Instead, _cosine similarity_ is more effective in measuring the similarity for analyzing and clustering text documents. This is because the normalization of data vectors helps to remove the biases induced by document length. Furthermore, spherical kmeans algorithm has been found to work well for text clustering. And the directional data can be well processed.
+
+### Pearson Correlation
+
+Given \\(x, y \in \mathbb{R}^d\\), the Pearson product moment correlation between them is given by \\(\rho(x, y) = \frac{\sum_{i=1}^{d}{(x_i - \bar{x})(y_i - \bar{y})}}{\sqrt{\sum_{i=1}^{d}{(x_i -\bar{x})^2}}\sqrt{\sum_{i=1}^{d}{(y_i -\bar{y})^2}}}\\), where \\(\bar{x}=\frac1d \sum_{i=1}^d{x_i}, \bar{y}=\frac1d \sum_{i=1}^d{y_i}\\).
+
+Consider the mapping \\(\mathbf{x} \mapsto \tilde{\mathbf{x}}\\) such that \\(\tilde{\mathbf{x}} = \frac{x_i - \tilde{x}}{\sqrt{\sum_{i=1}^d{(x_i - \bar{x})^2}}}\\), and a similar mapping for \\(\mathbf{y}\\). Then we have
+
+$$
+\rho(x, y) = \tilde{\mathbf{x}}^T \tilde{\mathbf{y}}
+$$
+
+Moreover, \\(\lvert\lvert \tilde{\mathbf{x}}\rvert\rvert_2 = \lvert\lvert \tilde{\mathbf{y}}\rvert\rvert_2 = 1\\). Thus, the Pearson correlation is exactly the cosine similarity between \\(\tilde{\mathbf{x}}\\) and \\(\tilde{\mathbf{y}}\\). Hence, analysis and clustering of data using Pearson correaltions is essentially a clustering problem for directional data.
+
+## Clustering on the unit hypersphere in scikit-learn
+
+![Mixture of von Mises Fisher](/assets/images/sphere_w_clusters.png)
+
+### Algorithms
+The package `spherecluster` implements the three algorithms outlined in ["Clustering on the Unit Hypersphere using von Mises-Fisher Distributions"](http://www.jmlr.org/papers/volume6/banerjee05a/banerjee05a.pdf), Banerjee et al., JMLR 2005, for scikit-learn.
+
+1. Spherical K-means (spkmeans)
+
+    Spherical K-means differs from conventional K-means in that it projects the estimated cluster centroids onto the the unit sphere at the end of each maximization step (i.e., normalizes the centroids).
+
+2. Mixture of von Mises Fisher distributions (movMF)
+
+    Much like the Gaussian distribution is parameterized by mean and variance, the [von Mises Fisher distribution](https://en.wikipedia.org/wiki/Von_Mises%E2%80%93Fisher_distribution) has a mean direction \\(\mu\\) and a concentration parameter \\(\kappa\\). Each point \\(x_i\\) drawn from the vMF distribution lives on the surface of the unit hypersphere \\(\S^{N-1}\\) (i.e., \\(\|x_i\|_2 = 1\\)) as does the mean direction \\(\|\mu\|_2 = 1\\).  Larger \\(\kappa\\) leads to a more concentrated cluster of points.
+
+    If we model our data as a [mixture](https://en.wikipedia.org/wiki/Mixture_model) of von Mises Fisher distributions, we have an additional weight parameter \\(\alpha\\) for each distribution in the mixture. The movMF algorithms estimate the mixture parameters via expectation-maximization (EM) enabling us to cluster data accordingly.
+
+    - soft-movMF
+
+        Estimates the real-valued posterior on each example for each class.  This enables a _soft clustering_ in the sense that we have a probability of cluster membership for each data point.
+
+    - hard-movMF
+
+        Sets the posterior on each example to be 1 for a single class and 0 for all others by selecting the location of the max value in the estimator soft posterior.
+
+    Beyond estimating cluster centroids, these algorithms also jointly estimate the weights of each cluster and the concentration parameters.  We provide an option to pass in (and override) weight estimates if they are known in advance.
+
+    Label assigment is achieved by computing the argmax of the posterior for each example.
+
+### Relationship between spkmeans and movMF
+
+Spherical k-means is a special case of both movMF algorithms.
+
+- If for each cluster we enforce all of the weights to be equal \\(\alpha_i = 1/n_clusters\\) and all concentrations to be equal and infinite \\(\kappa_i \rightarrow \infty\\), then soft-movMF behaves as spkmeans.
+
+- Similarly, if for each cluster we enforce all of the weights to be equal and all concentrations to be equal (with any value), then hard-movMF behaves as spkmeans.
+
