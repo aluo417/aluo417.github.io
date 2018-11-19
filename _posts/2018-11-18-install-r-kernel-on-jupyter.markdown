@@ -6,24 +6,22 @@ categories:
 tags: R, Jupyter, IRkernel
 ---
 
-> R for Jupyte`R`
+> R for jupyteR
 
-<!-- more -->
+## Installation via supplied binary packages
 
-## 1/2) Installation via supplied binary packages
+Open terminal and run R. Then run the following commands in the console.
 
-Open terminal and run `R`. Then run the following commands in the console.
-
-```R
+```
 install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
+
 devtools::install_github('IRkernel/IRkernel')
 ```
 
-## 2/2) Making the kernel available to Jupyter
+## Making the kernel available to Jupyter
 
 On OS X, be sure to execute this in R started from the Terminal, not the R App!
-(This is because the R app doesn’t honor $PATH changes in ~/.bash_profile)
 
-```R
+```
 IRkernel::installspec()
 ```
