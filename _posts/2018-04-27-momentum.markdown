@@ -1,6 +1,9 @@
 ---
 title: Momentum
 description: We are going to replicate the momentum data following the instructions on Kent Daniel’s website.
+category: Photo
+photos:
+- \assets\images\momentum\mom2.png
 categories:
  - project
 tags: 

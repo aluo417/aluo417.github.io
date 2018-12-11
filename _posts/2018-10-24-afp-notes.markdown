@@ -3,6 +3,9 @@ title: AFP Notes
 description: Notes of theoretical background knowledge for AFP.
 categories:
  - notes
+category: Photo
+photos:
+- /assets/images/sphere_w_clusters.png
 tags: afp, vMF, parameters
 ---
 
